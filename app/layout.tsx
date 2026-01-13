@@ -16,10 +16,53 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "Bienvenu Y. Sekongo - Développeur Web & Mobile Fullstack",
+  metadataBase: new URL('https://sekongo-bienvenu.vercel.app'),
+  title: {
+    default: "Bienvenu Y. Sekongo | Développeur Web & Mobile Fullstack",
+    template: "%s | Bienvenu Y. Sekongo"
+  },
   description:
-    "Portfolio de Bienvenu Y. Sekongo, développeur web et mobile fullstack. Intermédiaire/Presque senior en développement avec expertise React, Next.js, React Native et technologies fullstack modernes.",
+    "Portfolio de Bienvenu Y. Sekongo, développeur web et mobile fullstack. Expert React, Next.js & React Native basé en Côte d'Ivoire. Transformez vos idées en applications performantes.",
+  keywords: ["Développeur Fullstack", "React", "Next.js", "React Native", "Abidjan", "Côte d'Ivoire", "Freelance", "Web Developer", "Mobile Developer"],
+  authors: [{ name: "Bienvenu Y. Sekongo" }],
+  creator: "Bienvenu Y. Sekongo",
 
+  openGraph: {
+    type: 'website',
+    locale: 'fr_FR',
+    url: 'https://sekongo-bienvenu.vercel.app',
+    siteName: 'Portfolio de Bienvenu Y. Sekongo',
+    title: 'Bienvenu Y. Sekongo - Portfolio Développeur',
+    description: 'Transformez vos idées en applications performantes. Expert React & Next.js.',
+    images: [
+      {
+        url: '/images/profile-ben-pro.png',
+        width: 500, //1200,
+        height: 500, //630,
+        alt: 'Bienvenu Y. Sekongo - Fullstack Developer',
+      },
+    ],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bienvenu Y. Sekongo | Développeur Fullstack',
+    description: 'Découvrez mon portfolio et mes projets récents.',
+    images: ['/images/profile-ben-pro.png'],
+    creator: '@BenSekongo',
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({
