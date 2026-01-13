@@ -1,0 +1,535 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    /* NOUVEAU : Variables d'espacement cohérentes */
+    --section-padding-y: 5rem; /* 80px */
+    --section-padding-y-sm: 3rem; /* 48px */
+    --section-margin-bottom: 4rem; /* 64px */
+    --section-margin-bottom-sm: 2.5rem; /* 40px */
+    --content-max-width: 72rem; /* 1152px */
+    --content-padding-x: 1.5rem; /* 24px */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* NOUVEAU : Classes d'espacement standardisées */
+.section-padding {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+.section-padding-sm {
+  padding-top: var(--section-padding-y-sm);
+  padding-bottom: var(--section-padding-y-sm);
+}
+
+.section-margin {
+  margin-bottom: var(--section-margin-bottom);
+}
+
+.section-margin-sm {
+  margin-bottom: var(--section-margin-bottom-sm);
+}
+
+.content-container {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--content-padding-x);
+  padding-right: var(--content-padding-x);
+}
+
+/* NOUVEAU : Hiérarchie typographique cohérente */
+.heading-hero {
+  @apply font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight;
+}
+
+.heading-section {
+  @apply font-playfair text-3xl sm:text-4xl md:text-5xl font-bold leading-tight;
+}
+
+.heading-subsection {
+  @apply font-playfair text-2xl sm:text-3xl md:text-4xl font-bold leading-tight;
+}
+
+.heading-card {
+  @apply font-playfair text-xl sm:text-2xl font-bold leading-tight;
+}
+
+.text-lead {
+  @apply text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed font-medium;
+}
+
+.text-body {
+  @apply text-base text-gray-700 dark:text-gray-300 leading-relaxed;
+}
+
+.text-body-sm {
+  @apply text-sm text-gray-600 dark:text-gray-400 leading-relaxed;
+}
+
+/* AMÉLIORATION : Contraste optimisé */
+.text-improved {
+  color: rgb(55 65 81); /* gray-700 */
+}
+
+.dark .text-improved {
+  color: rgb(209 213 219); /* gray-300 */
+}
+
+.card-improved {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .card-improved {
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* NOUVEAU : Animations optimisées et cohérentes */
+@keyframes fade-in-up-optimized {
+  from {
+    opacity: 0;
+    transform: translateY(16px); /* Réduit de 20px à 16px */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left-optimized {
+  from {
+    opacity: 0;
+    transform: translateX(-16px); /* Réduit de -20px à -16px */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-right-optimized {
+  from {
+    opacity: 0;
+    transform: translateX(16px); /* Réduit de 20px à 16px */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-up-optimized {
+  from {
+    opacity: 0;
+    transform: scale(0.96); /* Réduit de 0.95 à 0.96 */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradient-x-optimized {
+  0%,
+  100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+@keyframes float-optimized {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px); /* Réduit de -15px à -12px */
+  }
+}
+
+/* Classes d'animation optimisées */
+.animate-fade-in-up-optimized {
+  animation: fade-in-up-optimized 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-left-optimized {
+  animation: fade-in-left-optimized 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in-right-optimized {
+  animation: fade-in-right-optimized 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-up-optimized {
+  animation: scale-up-optimized 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-gradient-x-optimized {
+  animation: gradient-x-optimized 5s ease infinite; /* Ralenti de 4s à 5s */
+}
+
+.animate-float-optimized {
+  animation: float-optimized 10s ease-in-out infinite; /* Ralenti de 8s à 10s */
+}
+
+/* Délais d'animation cohérents */
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Responsive typography améliorée */
+@media (max-width: 640px) {
+  :root {
+    --section-padding-y: 3rem; /* 48px sur mobile */
+    --section-padding-y-sm: 2rem; /* 32px sur mobile */
+    --section-margin-bottom: 2.5rem; /* 40px sur mobile */
+    --section-margin-bottom-sm: 1.5rem; /* 24px sur mobile */
+    --content-padding-x: 1rem; /* 16px sur mobile */
+  }
+
+  .font-playfair {
+    line-height: 1.2;
+  }
+
+  .heading-hero {
+    @apply text-3xl sm:text-4xl md:text-5xl;
+  }
+
+  .heading-section {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+
+  .heading-subsection {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  .text-lead {
+    @apply text-base sm:text-lg;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  :root {
+    --content-padding-x: 1.25rem; /* 20px sur tablette */
+  }
+}
+
+@media (min-width: 769px) {
+  :root {
+    --content-padding-x: 1.5rem; /* 24px sur desktop */
+  }
+}
+
+/* Optimisation pour iPhone */
+@media (max-width: 414px) {
+  .heading-hero {
+    font-size: 2rem; /* Plus lisible */
+    line-height: 1.1;
+  }
+
+  .heading-section {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .section-padding {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .section-margin {
+    margin-bottom: 2rem;
+  }
+
+  /* Boutons plus confortables sur mobile */
+  .btn-mobile {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Optimisation pour iPad */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .content-container {
+    max-width: 90%;
+  }
+}
+
+/* Optimisation pour écrans larges */
+@media (min-width: 1440px) {
+  .content-container {
+    max-width: 1280px;
+  }
+}
+
+/* NOUVEAU : Performance des animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Focus states améliorés */
+.focus-improved:focus {
+  outline: 2px solid rgb(249 115 22);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+.dark .focus-improved:focus {
+  outline-color: rgb(139 92 246);
+}
+
+/* États de hover optimisés */
+.hover-subtle:hover {
+  transform: translateY(-1px); /* Réduit de -2px à -1px */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* Plus fluide */
+}
+
+/* Ombres réalistes */
+.shadow-realistic {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.shadow-realistic-lg {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Transitions optimisées */
+.transition-smooth {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-smooth-slow {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mode haute performance */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up-optimized,
+  .animate-fade-in-left-optimized,
+  .animate-fade-in-right-optimized,
+  .animate-scale-up-optimized,
+  .animate-gradient-x-optimized,
+  .animate-float-optimized {
+    animation: none;
+    transition: none;
+  }
+
+  .hover-subtle:hover {
+    transform: none;
+  }
+}
+
+/* Mode contraste élevé */
+@media (prefers-contrast: high) {
+  .text-improved {
+    color: rgb(0 0 0);
+  }
+
+  .dark .text-improved {
+    color: rgb(255 255 255);
+  }
+
+  .card-improved {
+    background: rgba(255, 255, 255, 1);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .dark .card-improved {
+    background: rgba(0, 0, 0, 1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* NOUVEAU : Utilitaires d'espacement cohérents */
+.space-section {
+  margin-bottom: var(--section-margin-bottom);
+}
+
+.space-section-sm {
+  margin-bottom: var(--section-margin-bottom-sm);
+}
+
+.space-content {
+  margin-bottom: 1.5rem; /* 24px */
+}
+
+.space-content-sm {
+  margin-bottom: 1rem; /* 16px */
+}
+
+.space-element {
+  margin-bottom: 0.75rem; /* 12px */
+}
+
+/* Grilles cohérentes */
+.grid-cards {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.grid-projects {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-projects {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Nouveaux gradients optimisés */
+.gradient-primary {
+  background: linear-gradient(135deg, #ff6b35 0%, #8b5cf6 50%, #ec4899 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ff6b35 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  background: linear-gradient(135deg, #ff6b35 0%, #8b5cf6 50%, #ec4899 100%);
+}
+
+/* Utilitaires pour l'accessibilité */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus-visible:focus-visible {
+  outline: 2px solid rgb(249 115 22);
+  outline-offset: 2px;
+}
