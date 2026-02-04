@@ -17,11 +17,11 @@ export default function EnhancedHeroSection() {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative z-10 content-container overflow-hidden">
-      <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-3 gap-8 lg:gap-16 items-center">
         <AnimatedSection
-          animation="fadeInLeft"
+          animation="fadeInRight"
           delay={100}
-          className="flex justify-center lg:justify-end order-first lg:order-2"
+          className="flex justify-center lg:justify-start order-first lg:order-1"
         >
           <div className="relative w-64 h-64 lg:w-80 lg:h-80">
             {/* Animated circular border with gradient */}
@@ -49,7 +49,7 @@ export default function EnhancedHeroSection() {
           </div>
         </AnimatedSection>
 
-        <div className="text-center lg:text-left space-y-6 order-last lg:order-1">
+        <div className="text-center space-y-6 order-last lg:order-2 lg:col-span-2">
           {/* Greeting avec animation optimisée */}
           <AnimatedSection animation="fadeIn" delay={100}>
             <div className="space-y-4">
@@ -82,7 +82,7 @@ export default function EnhancedHeroSection() {
 
           {/* Boutons CTA avec espacement optimisé */}
           <AnimatedSection animation="scaleUp" delay={300}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/projects"
                 className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-orange-500 to-violet-600 rounded-full text-white font-semibold text-base sm:text-lg hover:shadow-2xl hover:shadow-orange-500/25 transition-smooth transform hover:scale-105 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
