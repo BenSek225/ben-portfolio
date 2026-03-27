@@ -3,20 +3,36 @@
 import { ArrowRight, Mail, Sparkles } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import AnimatedSection from "./animated-section"
+import TypewriterEffect from "./typewriter-effect"
 
 export default function EnhancedHeroSection() {
   const [mounted, setMounted] = useState(false)
+  const [mouse, setMouse] = useState({ x: 0, y: 0 })
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const rect = sectionRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const cx = rect.left + rect.width / 2
+    const cy = rect.top + rect.height / 2
+    setMouse({
+      x: (e.clientX - cx) / rect.width,
+      y: (e.clientY - cy) / rect.height,
+    })
+  }, [])
 
   useEffect(() => {
     setMounted(true)
-  }, [])
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [handleMouseMove])
 
   if (!mounted) return null
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative z-10 content-container overflow-hidden">
+    <section ref={sectionRef} className="min-h-screen flex items-center justify-center relative z-10 content-container overflow-hidden">
       <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-3 gap-8 lg:gap-16 items-center">
         <AnimatedSection
           animation="fadeInRight"
@@ -62,12 +78,21 @@ export default function EnhancedHeroSection() {
                 </span>
               </h1>
 
-              {/* Sous-titre optimisé */}
+              {/* Sous-titre avec effet typewriter */}
               <div className="relative inline-block lg:inline">
                 <p className="heading-subsection text-gray-700 dark:text-gray-300 font-light">
-                  Développeur Web & Mobile Fullstack
+                  <TypewriterEffect
+                    words={[
+                      "Développeur Web Fullstack",
+                      "Développeur Mobile React Native",
+                      "Architecte Frontend & Backend",
+                      "Créateur d'expériences digitales",
+                    ]}
+                    typingSpeed={75}
+                    deletingSpeed={40}
+                    pauseDuration={2200}
+                  />
                 </p>
-                <div className="absolute -right-3 lg:-right-4 top-0 w-1 h-full bg-gradient-to-b from-orange-500 to-violet-600 animate-pulse"></div>
               </div>
             </div>
           </AnimatedSection>
@@ -75,8 +100,8 @@ export default function EnhancedHeroSection() {
           {/* Description avec espacement cohérent */}
           <AnimatedSection animation="fadeInUp" delay={200}>
             <p className="text-lead max-w-2xl lg:max-w-none">
-              Je crée des solutions web et mobiles complètes en combinant frontend intuitif et backend robuste pour
-              transformer vos idées les plus ambitieuses en applications performantes et scalables.
+              Basé à Abidjan, je transforme des idées complexes en produits digitaux que les gens adorent utiliser —
+              du premier pixel au dernier endpoint. Web, mobile, fullstack : je couvre tout.
             </p>
           </AnimatedSection>
 
@@ -109,10 +134,23 @@ export default function EnhancedHeroSection() {
         </div>
       </div>
 
-      {/* Éléments décoratifs optimisés */}
-      <div className="absolute top-1/4 left-10 w-20 h-20 bg-orange-500/10 rounded-full blur-xl animate-float-optimized"></div>
-      <div className="absolute top-1/3 right-10 w-32 h-32 bg-violet-500/10 rounded-full blur-xl animate-float-optimized animation-delay-300"></div>
-      <div className="absolute bottom-1/4 left-1/4 w-16 h-16 bg-pink-500/10 rounded-full blur-xl animate-float-optimized animation-delay-500"></div>
+      {/* Éléments décoratifs avec parallax souris */}
+      <div
+        className="absolute top-1/4 left-10 w-24 h-24 bg-orange-500/15 rounded-full blur-2xl pointer-events-none transition-transform duration-700 ease-out"
+        style={{ transform: `translate(${mouse.x * -30}px, ${mouse.y * -20}px)` }}
+      />
+      <div
+        className="absolute top-1/3 right-10 w-36 h-36 bg-violet-500/15 rounded-full blur-2xl pointer-events-none transition-transform duration-700 ease-out"
+        style={{ transform: `translate(${mouse.x * 25}px, ${mouse.y * 25}px)` }}
+      />
+      <div
+        className="absolute bottom-1/4 left-1/4 w-20 h-20 bg-pink-500/15 rounded-full blur-2xl pointer-events-none transition-transform duration-700 ease-out"
+        style={{ transform: `translate(${mouse.x * -20}px, ${mouse.y * 30}px)` }}
+      />
+      <div
+        className="absolute bottom-1/3 right-1/4 w-16 h-16 bg-orange-400/10 rounded-full blur-xl pointer-events-none transition-transform duration-700 ease-out"
+        style={{ transform: `translate(${mouse.x * 35}px, ${mouse.y * -25}px)` }}
+      />
     </section>
   )
 }

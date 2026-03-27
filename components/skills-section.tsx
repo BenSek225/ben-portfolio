@@ -89,7 +89,7 @@ export default function SkillsSection() {
                   {category.skills.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
-                      className="flex items-center space-x-4 p-3 rounded-xl bg-gray-50/50 dark:bg-white/5 group-hover:bg-white/80 dark:group-hover:bg-white/10 transition-smooth"
+                      className="skill-tag flex items-center space-x-4 p-3 rounded-xl bg-gray-50/50 dark:bg-white/5 group-hover:bg-white/80 dark:group-hover:bg-white/10 transition-smooth cursor-default"
                     >
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-orange-500/15 to-violet-500/15 dark:from-orange-500/25 dark:to-violet-500/25 flex items-center justify-center group-hover:from-orange-500/25 group-hover:to-violet-500/25 dark:group-hover:from-orange-500/35 dark:group-hover:to-violet-500/35 transition-smooth">
                         <skill.icon className="w-4 h-4 text-gray-700 dark:text-gray-300 group-hover:text-orange-500 dark:group-hover:text-violet-400 transition-colors duration-300" />

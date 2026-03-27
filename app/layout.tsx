@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/contexts/theme-context"
 import GlowHeader from "@/components/glow-header"
 import Footer from "@/components/footer"
 import AnimatedBackground from "@/components/animated-background"
+import PageTransition from "@/components/page-transition"
 
 const inter = Inter({ subsets: ["latin"] })
 const playfair = Playfair_Display({
@@ -77,7 +78,9 @@ export default function RootLayout({
           <div className="relative min-h-screen">
             <AnimatedBackground />
             <GlowHeader />
-            <div className="pt-16 sm:pt-20">{children}</div>
+            <div className="pt-16 sm:pt-20">
+              <PageTransition>{children}</PageTransition>
+            </div>
             <Footer />
           </div>
         </ThemeProvider>

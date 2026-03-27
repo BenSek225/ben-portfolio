@@ -4,12 +4,14 @@ import Image from "next/image"
 import Link from "next/link"
 import { Mail, Download, Award, Users, Coffee, GraduationCap, Lightbulb } from "lucide-react"
 import AnimatedSection from "@/components/animated-section"
+import AnimatedCounter from "@/components/animated-counter.tsx"
+import AnimatedTimelineLine from "@/components/animated-timeline-line"
 
 export default function AboutPage() {
   const stats = [
-    { icon: Award, value: "50+", label: "Projets réalisés" },
-    { icon: Users, value: "30+", label: "Clients satisfaits" },
-    { icon: Coffee, value: "1000+", label: "Tasses de café" },
+    { icon: Award, value: 15, suffix: "+", label: "Projets livrés" },
+    { icon: Users, value: 10, suffix: "+", label: "Clients satisfaits" },
+    { icon: Coffee, value: 3, suffix: "", label: "Apps en production" },
   ]
 
   const experiences = [
@@ -27,7 +29,7 @@ export default function AboutPage() {
         "Optimisation des performances et de l'expérience utilisateur",
         "Tests et débogage des applications",
       ],
-      technologies: ["React", "React-Naative", "Expo", "Next.js", "TypeScript", "Tailwind CSS", "Figma"],
+      technologies: ["React", "React-Native", "Expo", "Next.js", "TypeScript", "Tailwind CSS", "Figma"],
     },
     {
       title: " Lead Full-Stack Developer",
@@ -183,22 +185,22 @@ export default function AboutPage() {
 
                 <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
                   <p>
-                    Développeur intermédiaire avec plus de 5 ans d&apos;expérience en développement web et mobile. Bien
-                    que je n&apos;aie pas de longue expérience en entreprise traditionnelle, j&apos;ai travailler sur
-                    plusieurs projets concret et je maitrise des technologies modernes pour créer des solutions
-                    complètes et performantes.
+                    Développeur fullstack avec 3 ans d&apos;expérience, j&apos;ai construit des produits concrets
+                    utilisés par de vraies personnes — du e-commerce à la livraison mobile, en passant par des
+                    plateformes de communication. Je maîtrise des technologies modernes pour créer des solutions
+                    complètes et performantes, du premier pixel au dernier endpoint.
                   </p>
 
                   <p>
-                    Ma passion pour l'innovation et mon attention aux détails me permettent de concevoir et développer
-                    des architectures complètes, du frontend intuitif au backend robuste. Je travaille avec des
-                    technologies modernes comme React, Next.js, React Native, Node.js, et les outils cloud les plus
-                    avancés.
+                    Mon approche : comprendre d&apos;abord le problème, puis concevoir la solution la plus simple et
+                    la plus robuste possible. Je travaille avec React, Next.js, React Native, Node.js et Supabase
+                    pour livrer des produits rapides, accessibles et maintenables.
                   </p>
 
                   <p>
-                    Mon approche se base sur une compréhension profonde des besoins utilisateurs, une architecture
-                    backend solide, et une veille constante des dernières tendances en développement fullstack.
+                    Ce qui me différencie ? Je pense à la fois comme un développeur et comme un utilisateur. Chaque
+                    décision technique est guidée par une question simple : est-ce que ça rend l&apos;expérience
+                    meilleure pour la personne qui va l&apos;utiliser ?
                   </p>
                 </div>
 
@@ -224,6 +226,26 @@ export default function AboutPage() {
           </AnimatedSection>
         </div>
 
+        {/* Stats animées */}
+        <AnimatedSection animation="fadeInUp" delay={200}>
+          <div className="grid grid-cols-3 gap-6 mb-24">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center text-center bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-white/10 hover:border-orange-500/30 dark:hover:border-violet-400/30 transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-500/20 to-violet-500/20 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <stat.icon className="w-6 h-6 text-orange-500 dark:text-violet-400" />
+                </div>
+                <span className="text-3xl md:text-4xl font-bold font-playfair bg-gradient-to-r from-orange-500 via-violet-600 to-pink-500 bg-clip-text text-transparent">
+                  <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={1600} />
+                </span>
+                <span className="text-sm text-gray-600 dark:text-gray-400 mt-1 font-medium">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+
         {/* Expérience Professionnelle */}
         <section className="mb-24">
           <AnimatedSection animation="fadeInUp" delay={100}>
@@ -243,21 +265,20 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             {/* Timeline Container */}
             <div className="relative">
-              {/* Ligne verticale */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-violet-600 to-pink-500 opacity-30"></div>
+              {/* Ligne verticale animée au scroll */}
+              <AnimatedTimelineLine />
 
               {experiences.map((experience, index) => (
                 <AnimatedSection key={index} animation="fadeInUp" delay={200 + index * 150}>
                   <div className={`relative flex items-start ${index < experiences.length - 1 ? "mb-16" : ""}`}>
                     {/* Cercle numéroté */}
                     <div
-                      className={`flex-shrink-0 w-16 h-16 ${
-                        index === 0
-                          ? "bg-gradient-to-r from-orange-500 to-violet-600"
-                          : index === 1
-                            ? "bg-gradient-to-r from-violet-600 to-pink-500"
-                            : "bg-gradient-to-r from-pink-500 to-orange-500"
-                      } rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg z-10`}
+                      className={`flex-shrink-0 w-16 h-16 ${index === 0
+                        ? "bg-gradient-to-r from-orange-500 to-violet-600"
+                        : index === 1
+                          ? "bg-gradient-to-r from-violet-600 to-pink-500"
+                          : "bg-gradient-to-r from-pink-500 to-orange-500"
+                        } rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg z-10`}
                     >
                       {index + 1}
                     </div>
@@ -287,13 +308,12 @@ export default function AboutPage() {
                         {experience.responsibilities.map((responsibility, respIndex) => (
                           <li key={respIndex} className="flex items-start">
                             <span
-                              className={`${
-                                index === 0
-                                  ? "text-orange-500 dark:text-violet-400"
-                                  : index === 1
-                                    ? "text-violet-500 dark:text-pink-400"
-                                    : "text-pink-500 dark:text-orange-400"
-                              } mr-3`}
+                              className={`${index === 0
+                                ? "text-orange-500 dark:text-violet-400"
+                                : index === 1
+                                  ? "text-violet-500 dark:text-pink-400"
+                                  : "text-pink-500 dark:text-orange-400"
+                                } mr-3`}
                             >
                               •
                             </span>
@@ -308,13 +328,12 @@ export default function AboutPage() {
                           {experience.technologies.map((tech, techIndex) => (
                             <span
                               key={techIndex}
-                              className={`px-3 py-1 ${
-                                index === 0
-                                  ? "bg-gradient-to-r from-orange-500/10 to-violet-500/10 dark:from-orange-500/20 dark:to-violet-500/20 border border-orange-500/20 dark:border-violet-400/20"
-                                  : index === 1
-                                    ? "bg-gradient-to-r from-violet-500/10 to-pink-500/10 dark:from-violet-500/20 dark:to-pink-500/20 border border-violet-500/20 dark:border-pink-400/20"
-                                    : "bg-gradient-to-r from-pink-500/10 to-orange-500/10 dark:from-pink-500/20 dark:to-orange-500/20 border border-pink-500/20 dark:border-orange-400/20"
-                              } text-gray-800 dark:text-gray-200 rounded-full text-sm font-medium`}
+                              className={`skill-tag px-3 py-1 cursor-default ${index === 0
+                                ? "bg-gradient-to-r from-orange-500/10 to-violet-500/10 dark:from-orange-500/20 dark:to-violet-500/20 border border-orange-500/20 dark:border-violet-400/20"
+                                : index === 1
+                                  ? "bg-gradient-to-r from-violet-500/10 to-pink-500/10 dark:from-violet-500/20 dark:to-pink-500/20 border border-violet-500/20 dark:border-pink-400/20"
+                                  : "bg-gradient-to-r from-pink-500/10 to-orange-500/10 dark:from-pink-500/20 dark:to-orange-500/20 border border-pink-500/20 dark:border-orange-400/20"
+                                } text-gray-800 dark:text-gray-200 rounded-full text-sm font-medium`}
                             >
                               {tech}
                             </span>

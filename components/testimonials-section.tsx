@@ -2,26 +2,27 @@
 
 import { Star, Quote } from "lucide-react"
 import AnimatedSection from "./animated-section"
+import Image from "next/image"
 
 const testimonials = [
   {
     id: 1,
     name: "Marie Luciette",
-    role: "CEO, TechStart",
-    avatar: "/placeholder.svg?height=80&width=80",
+    role: "CEO",
+    avatar: "/images/avatar-marie.svg",
     content:
-      "Bienvenu a transformé notre vision en une interface utilisateur exceptionnelle. Son attention aux détails et sa créativité ont dépassé nos attentes.",
+      "Bienvenu a transformé notre vision en une interface utilisateur exceptionnelle. Son attention aux détails et sa créativité ont dépassé nos attentes. L'app est exactement ce qu'on imaginait.",
     rating: 5,
     initial: "M",
     gradientColor: "from-orange-500/20 via-orange-500/10 to-transparent",
   },
   {
     id: 2,
-    name: "Jean Francois",
-    role: "Product Manager, InnovateCorp",
-    avatar: "/placeholder.svg?height=80&width=80",
+    name: "Jean-François K.",
+    role: "Directeur Produit",
+    avatar: "/images/avatar-jean.svg",
     content:
-      "Un développeur frontend exceptionnel avec un œil artistique remarquable. La collaboration a été fluide et le résultat final impressionnant.",
+      "Un développeur fullstack rigoureux, avec un vrai sens du design. La plateforme qu'il a livrée est propre, rapide et nos équipes l'ont adoptée immédiatement.",
     rating: 5,
     initial: "J",
     gradientColor: "from-violet-500/20 via-violet-500/10 to-transparent",
@@ -29,10 +30,10 @@ const testimonials = [
   {
     id: 3,
     name: "Sophie Laurent",
-    role: "Founder, DesignStudio",
-    avatar: "/placeholder.svg?height=80&width=80",
+    role: "Fondatrice",
+    avatar: "/images/avatar-sophie.svg",
     content:
-      "Bienvenu comprend parfaitement les enjeux UX/UI. Il a su créer une expérience utilisateur intuitive qui a considérablement amélioré nos conversions.",
+      "Bienvenu comprend parfaitement les enjeux UX/UI. Il a su créer une expérience intuitive pour notre marketplace qui a considérablement amélioré nos ventes en ligne.",
     rating: 5,
     initial: "S",
     gradientColor: "from-pink-500/20 via-pink-500/10 to-transparent",
@@ -78,10 +79,14 @@ export default function TestimonialsSection() {
 
                 {/* Auteur - mt-auto pushes this to bottom */}
                 <div className="relative z-10 flex items-center space-x-3 space-content mt-auto">
-                  <div
-                    className={`w-10 h-10 rounded-full bg-gradient-to-r ${testimonial.gradientColor.replace("/20", "").replace("/10", "").replace("to-transparent", "to-violet-600")} flex items-center justify-center flex-shrink-0`}
-                  >
-                    <span className="text-white font-bold text-sm">{testimonial.initial}</span>
+                  <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white/20">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      width={40}
+                      height={40}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <div className="flex-1 min-w-0">
